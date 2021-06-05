@@ -1,10 +1,14 @@
-import {useEffect, createContext, useState} from 'react'
+import {useEffect, createContext, useState, useCallback} from 'react'
 import { getAllToDo } from '../api/http';
 
 export const ToDoContext = createContext({});
 
 const ToDoProvider = (props) => {
     const [todos, setToDos] = useState([]);
+    
+    const refreshContext = useCallback(() => {
+        console.log(" refresh context !!!");
+    });
 
     useEffect(() => {
         const fetchTodos = async () => {
@@ -18,10 +22,10 @@ const ToDoProvider = (props) => {
 
         fetchTodos();
 
-    }, []);
+    }, [refreshContext]);
 
     return (
-        <ToDoContext.Provider value={todos}>
+        <ToDoContext.Provider value={{...todos, refreshContext }}>
           {props.children}
          </ToDoContext.Provider>
       );

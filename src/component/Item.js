@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from "./Button";
 import { deleteToDo, editToDo } from '../api/http';
+import { ToDoContext } from "../context/todoContext";
 
 const Item = (props) => {
     const {item, id} = props;
 
     const [disabledInput, setDisabledInput] = useState(true);
     const [newItem, setNewItem] = useState(item);
+    const { refreshContext } = useContext(ToDoContext);
 
     const onDelete = async (value) => {
         await deleteToDo(value);
+        refreshContext();
     };
       
     const onEdit = async (id) => {
@@ -27,7 +30,7 @@ const Item = (props) => {
             value={newItem}
             disabled={disabledInput}
         />
-        <Button label={disabledInput ? "Edit" : "Add"} targetedValue={id} action={onEdit} />
+        <Button label={ disabledInput ? "Edit" : "Update" } targetedValue={id} action={onEdit} />
         <Button label="Delete" targetedValue={id} action={onDelete} />
         </>
     );
