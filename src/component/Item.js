@@ -1,19 +1,32 @@
+import React, { useState } from 'react';
 import Button from "./Button";
 
-const onDelete = (value) => {
-  console.log("   onDelete  is clicked ", value);
-};
+const Item = (props) => {
+    const {item, id} = props;
 
-const onEdit = (value) => {
-  console.log("   onEdit  is clicked ", value);
-};
+    const [disabledInput, setDisabledInput] = useState(true);
+    const [newItem, setNewItem] = useState(item);
 
-export const Item = (props) => {
+    const onDelete = (value) => {
+        console.log("   onDelete  is clicked ", value);
+    };
+      
+    const onEdit = (value) => {
+        console.log("   onEdit  is clicked ", value);
+        setDisabledInput(false);
+    };
+
     return (
         <>
-        {item}
+        <input 
+            onChange={(e) => setNewItem(e.target.value)} 
+            value={newItem}
+            disabled={disabledInput}
+        />
         <Button label="Edit" targetedValue={id} action={onEdit} />
         <Button label="Delete" targetedValue={id} action={onDelete} />
         </>
     );
 };
+
+export default Item;

@@ -7,8 +7,17 @@ export const insertToDo = async (data) => {
       const response = await axios.post('/todos', {
         text: data
       });
-    //   console.log(response);
-        return response;
+        
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+}
+
+export const getAllToDo = async () => {
+    try {
+      const response = await axios.get('/todos');
+      return response;
     } catch (error) {
       console.error(error);
     }
