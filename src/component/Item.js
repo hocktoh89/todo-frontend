@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from "./Button";
+import { deleteToDo } from '../api/http';
 
 const Item = (props) => {
     const {item, id} = props;
@@ -7,7 +8,8 @@ const Item = (props) => {
     const [disabledInput, setDisabledInput] = useState(true);
     const [newItem, setNewItem] = useState(item);
 
-    const onDelete = (value) => {
+    const onDelete = async (value) => {
+        await deleteToDo(value);
         console.log("   onDelete  is clicked ", value);
     };
       

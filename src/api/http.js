@@ -22,3 +22,12 @@ export const getAllToDo = async () => {
       console.error(error);
     }
 }
+
+export const deleteToDo = async (id) => {
+  try {
+    const response = await axios.delete(`/todos/${id}`);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}

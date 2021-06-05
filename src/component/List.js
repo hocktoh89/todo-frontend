@@ -19,7 +19,7 @@ const List = () => {
         items &&
         items.map(({ _id, text }) => (
         <ul key={_id}>
-        <Item item={text}/>
+        <Item item={text} id={_id}/>
         </ul>
         ))
     );
