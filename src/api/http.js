@@ -31,3 +31,14 @@ export const deleteToDo = async (id) => {
     console.error(error);
   }
 }
+
+export const editToDo = async (id, data) => {
+  try {
+    const response = await axios.put(`/todos/${id}`,{
+      text: data
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
