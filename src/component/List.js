@@ -9,7 +9,7 @@ const List = () => {
 
     useEffect(() => {
         setItems(oriData);
-    }, oriData);
+    }, [oriData]);
 
     if(!items) {
         return <></>;
