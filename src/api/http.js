@@ -42,3 +42,12 @@ export const editToDo = async (id, data) => {
     console.error(error);
   }
 }
+
+export const deleteToDos = async () => {
+  try {
+    const response = await axios.delete(`delete_all/todos/`);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}

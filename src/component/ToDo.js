@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { insertToDo } from '../api/http';
+import { insertToDo, deleteToDos } from '../api/http';
 import Button from './Button';
 import List from './List';
 
@@ -18,12 +18,26 @@ const NewToDo = () => {
     </div>
 };
 
+const DeleteAllButton = () => {
+
+    const onDeleteAll = async () => {
+        await deleteToDos();
+    };
+
+    return <div>
+        <Button label="Delete All" action={onDeleteAll} />
+    </div>
+};
+
 const ToDo = () => {
 
     return <> 
         <h1>To Do List</h1>
         <NewToDo />
-        <List/>
+        <div>
+            <List/>
+            <DeleteAllButton/>
+        </div>
     </>
 };
 
