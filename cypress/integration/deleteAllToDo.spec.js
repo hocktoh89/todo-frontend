@@ -16,7 +16,7 @@ before(() => {
     cy.visit("http://localhost:3000");
 })
 
-describe('Delete Single To Do Item', () => {
+describe('Delete All To Do Item', () => {
 
 
     it('Delete successful', () => {
