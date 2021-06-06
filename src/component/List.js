@@ -16,12 +16,16 @@ const List = () => {
     }
 
     return (
-        items &&
-        items.map(({ _id, text }) => (
-        <ul key={_id}>
-            <Item item={text} id={_id}/>
+        <ul data-cy="toDoList">
+            {
+                items &&
+                items.map(({ _id, text }) => (
+                <li key={_id}>
+                    <Item item={text} id={_id}/>
+                </li>
+                ))
+            }
         </ul>
-        ))
     );
 }
 

@@ -17,7 +17,7 @@ const NewToDo = () => {
         refreshContext(newCount);
     };
 
-    return <div>
+    return <div data-cy="newToDo">
         <input onChange={(e) => setNewItem(e.target.value)} value={newItem} />
         <Button label="Add" targetedValue={newItem} action={onAdd} />
     </div>
