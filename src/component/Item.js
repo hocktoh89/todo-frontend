@@ -32,7 +32,10 @@ const Item = (props) => {
             value={newItem}
             disabled={disabledInput}
         />
-        <Button label={ disabledInput ? "Edit" : "Update" } targetedValue={id} action={onEdit} />
+        <Button dataCy="editToDoBtn"
+            label={ disabledInput ? "Edit" : "Update" } 
+            targetedValue={id} action={onEdit} 
+        />
         <Button label="Delete" targetedValue={id} action={onDelete} />
         </>
     );

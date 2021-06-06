@@ -5,10 +5,10 @@ const onClick = (targetedValue, action) => {
   };
   
 const Button = (props) => {
-    const { targetedValue, label, action } = props;
+    const { targetedValue, label, action, dataCy } = props;
 
     return (
-        <button onClick={() => onClick(targetedValue, action)}>{label}</button>
+        <button data-cy={dataCy} onClick={() => onClick(targetedValue, action)}>{label}</button>
     );
 }
 
