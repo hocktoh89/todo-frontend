@@ -7,12 +7,14 @@ import { ToDoContext } from "../context/todoContext";
 const NewToDo = () => {
 
     const [newItem, setNewItem] = useState('');
-    const { refreshContext } = useContext(ToDoContext);
+    const { refreshContext , refreshCount} = useContext(ToDoContext);
 
     const onAdd = async (value) => {
         await insertToDo(value);
+
         setNewItem('');
-        refreshContext();
+        const newCount = refreshCount + 1;
+        refreshContext(newCount);
     };
 
     return <div>
@@ -23,11 +25,13 @@ const NewToDo = () => {
 
 const DeleteAllButton = () => {
 
-    const { refreshContext } = useContext(ToDoContext);
+    const { refreshContext, refreshCount } = useContext(ToDoContext);
 
     const onDeleteAll = async () => {
         await deleteToDos();
-        refreshContext();
+
+        const newCount = refreshCount + 1;
+        refreshContext(newCount);
     };
 
     return <div>

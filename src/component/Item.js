@@ -8,11 +8,13 @@ const Item = (props) => {
 
     const [disabledInput, setDisabledInput] = useState(true);
     const [newItem, setNewItem] = useState(item);
-    const { refreshContext } = useContext(ToDoContext);
+    const { refreshContext, refreshCount } = useContext(ToDoContext);
 
     const onDelete = async (value) => {
         await deleteToDo(value);
-        refreshContext();
+
+        const newCount = refreshCount + 1;
+        refreshContext(newCount);
     };
       
     const onEdit = async (id) => {
