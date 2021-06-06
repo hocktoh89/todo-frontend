@@ -1,39 +1,31 @@
 const todoItems = 
 [
-    "Buy Milk",
-    "Buy Magazines",
-    "Buy Pizza"
+    "watch Movie",
+    "Play Piano",
+    "Buy Chicken Rice"
 ];
 
 before(() => {
+    cy.intercept('GET', '/todos', { fixture: 'todos.json' });
+    cy.intercept('DELETE', 'delete_all/todos', {
+      statusCode: 204,
+      body: {
+          data: {}
+      },
+  });
     cy.visit("http://localhost:3000");
-})
-  
-after(() => {
-    cy.get('[data-cy=deleteToDosBtn]').click();
-})
-
-beforeEach(() => {
-    cy.get('[data-cy=newToDoBtn]').within(() => {
-        cy.get('input').type(todoItems[0])
-        cy.get('button').contains('Add').click()
-      })
-
-      cy.get('[data-cy=newToDoBtn]').within(() => {
-        cy.get('input').type(todoItems[1])
-        cy.get('button').contains('Add').click()
-      })
-
-      cy.get('[data-cy=newToDoBtn]').within(() => {
-        cy.get('input').type(todoItems[2])
-        cy.get('button').contains('Add').click()
-      })
 })
 
 describe('Delete Single To Do Item', () => {
 
 
     it('Delete successful', () => {
+        cy.intercept('GET', '/todos', { 
+          statusCode: 200,
+          body: {
+              data: []
+        },});
+
         cy.get('[data-cy=toDoList]').find('li').should('have.length', 3);
         cy.get('[data-cy=toDoList]').find('input').eq(0).should('have.value', todoItems[0]);
         cy.get('[data-cy=toDoList]').find('input').eq(1).should('have.value', todoItems[1]);
