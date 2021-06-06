@@ -17,7 +17,7 @@ const NewToDo = () => {
         refreshContext(newCount);
     };
 
-    return <div data-cy="newToDo">
+    return <div data-cy="newToDoBtn">
         <input onChange={(e) => setNewItem(e.target.value)} value={newItem} />
         <Button label="Add" targetedValue={newItem} action={onAdd} />
     </div>
@@ -34,7 +34,7 @@ const DeleteAllButton = () => {
         refreshContext(newCount);
     };
 
-    return <div>
+    return <div data-cy="deleteToDosBtn">
         <Button label="Delete All" action={onDeleteAll} />
     </div>
 };

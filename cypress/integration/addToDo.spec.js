@@ -2,6 +2,10 @@ before(() => {
     cy.visit("http://localhost:3000");
   })
   
+after(() => {
+    cy.get('[data-cy=deleteToDosBtn]').click();
+})
+
   describe('Add New To Do Item', () => {
 
     const todoItems = [ 
@@ -11,17 +15,17 @@ before(() => {
     ];
 
     it('Add New ToDo', () => {
-        cy.get('[data-cy=newToDo]').within(() => {
+        cy.get('[data-cy=newToDoBtn]').within(() => {
             cy.get('input').type(todoItems[0])
             cy.get('button').contains('Add').click()
           })
          
-        cy.get('[data-cy=newToDo]').within(() => {
+        cy.get('[data-cy=newToDoBtn]').within(() => {
             cy.get('input').type(todoItems[1])
             cy.get('button').contains('Add').click()
         }) 
 
-        cy.get('[data-cy=newToDo]').within(() => {
+        cy.get('[data-cy=newToDoBtn]').within(() => {
             cy.get('input').type(todoItems[2])
             cy.get('button').contains('Add').click()
         })
