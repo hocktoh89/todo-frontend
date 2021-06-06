@@ -36,7 +36,9 @@ const Item = (props) => {
             label={ disabledInput ? "Edit" : "Update" } 
             targetedValue={id} action={onEdit} 
         />
-        <Button label="Delete" targetedValue={id} action={onDelete} />
+        <Button dataCy="deleteToDoBtn"
+            label="Delete" 
+            targetedValue={id} action={onDelete} />
         </>
     );
 };
